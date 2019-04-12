@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+
+
+{% block right_menu %}
+  <a class="button is-link" href={{ url_for('requested_features') }}>
+    Requested Features
+  </a>
+{% endblock %}
+
+
+{% block body %}
+
+    <section class="section">
+        <h1 class="title is-3 has-text-centered">New Feature Request</h1>
+        <div class="container">
+
+            {% with messages = get_flashed_messages(category_filter=["success"]) %}
+              {% if messages %}
+                <div class="notification is-primary has-text-centered">
+                    <ul>
+                        {% for message in messages %}
+                          <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+              {% endif %}
+            {% endwith %}
+
+            {% with messages = get_flashed_messages(category_filter=["error"]) %}
+              {% if messages %}
+                <div class="notification is-danger has-text-centered">
+                    <ul>
+                        {% for message in messages %}
+                          <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+              {% endif %}
+            {% endwith %}
+
+
+
+             <form action="" method="POST">
+                 {{ form.csrf_token }}
+
+                 <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                         <label class="label">Title</label>
+                      </div>
+                      <div class="field-body">
+                            <div class="field">
+                              <div class="control">
+                                <input class="input" name="title" type="text" placeholder="">
+                              </div>
+                                {% if form.title.errors %}
+                                    {% for error in form.title.errors %}
+                                        <p class="help is-danger">{{ error }}</p>
+                                    {% endfor %}
+                               {% endif %}
+                            </div>
+                      </div>
+                 </div>
+
+
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label">Description</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="field">
+                          <div class="control">
+                            <textarea class="textarea" name="description" placeholder=""></textarea>
+                          </div>
+                            {% if form.description.errors %}
+                                    {% for error in form.description.errors %}
+                                        <p class="help is-danger">{{ error }}</p>
+                                    {% endfor %}
+                               {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                         <label class="label">Client</label>
+                    </div>
+                     <div class="field-body">
+                        <div class="field">
+
+                          <div class="control">
+                            <div class="select">
+                              <select name="client">
+                                <option value="">Select Client</option>
+                                  <option value="Client A">Client A</option>
+                                  <option value="Client B">Client B</option>
+                                  <option value="Client C">Client C</option>
+                              </select>
+                            </div>
+                          </div>
+                            {% if form.client.errors %}
+                                    {% for error in form.client.errors %}
+                                        <p class="help is-danger">{{ error }}</p>
+                                    {% endfor %}
+                               {% endif %}
+                        </div>
+                    </div>
+
+                 </div>
+
+                 <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                         <label class="label">Client Priority</label>
+                    </div>
+                     <div class="field-body">
+                        <div class="field">
+
+                          <div class="control">
+                            <div class="select">
+                              <select name="client_priority">
+                                <option value="">Select Priority</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                   <option value="4">4</option>
+                                  <option value="5">5</option>
+                              </select>
+                            </div>
+                          </div>
+                            {% if form.client_priority.errors %}
+                                    {% for error in form.client_priority.errors %}
+                                        <p class="help is-danger">{{ error }}</p>
+                                    {% endfor %}
+                               {% endif %}
+                        </div>
+                    </div>
+
+                 </div>
+
+                 <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label">Target Date</label>
+                      </div>
+                      <div class="field-body">
+                           <div class="field">
+                              <div class="control">
+                                <input id="target_date" class="input" name="target_date" type="date" placeholder="" value="">
+                              </div>
+                               {% if form.target_date.errors %}
+                                    {% for error in form.target_date.errors %}
+                                        <p class="help is-danger">{{ error }}</p>
+                                    {% endfor %}
+                               {% endif %}
+                            </div>
+                      </div>
+                 </div>
+
+                 <div class="field is-horizontal">
+                      <div class="field-label is-normal">
+                        <label class="label"> Product Area </label>
+                      </div>
+                      <div class="field-body">
+                          <div class="field">
+                              <div class="control">
+                                <div class="select">
+                                  <select name="product_area">
+                                    <option value="">Select Area</option>
+                                      <option value="Policies">Policies</option>
+                                      <option value="Billing">Billing</option>
+                                      <option value="Claims">Claims</option>
+                                      <option value="Reports">Reports</option>
+                                  </select>
+                                </div>
+                              </div>
+                              {% if form.product_area.errors %}
+                                    {% for error in form.product_area.errors %}
+                                        <p class="help is-danger">{{ error }}</p>
+                                    {% endfor %}
+                               {% endif %}
+                          </div>
+                      </div>
+                 </div>
+
+                 <div class="field is-horizontal ">
+                      <div class="field-label is-normal">
+                      </div>
+                      <div class="field-body">
+                          <div class="field is-grouped  is-grouped-right">
+                              <div class="control">
+                                    <button class="button is-link" type="submit">Submit</button>
+                              </div>
+                        </div>
+                      </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </form>
+
+        </div>
+    </section>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+

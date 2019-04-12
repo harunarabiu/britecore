@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block right_menu %}
+  <a class="button is-link" href={{ url_for('feature_request') }}>
+    Request a Feature
+  </a>
+{% endblock %}
+
+{% block body %}
+
+     <section class="section">
+         <h1 class="title is-3 has-text-centered">Requested Features</h1>
+        <div class="container">
+            <table id="requestlist" class="table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Client</th>
+                            <th>Client Priority</th>
+                            <th>Target Date</th>
+                            <th>Product Area</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for d in data %}
+                             <tr>
+                                 <td>{{ d.title }}</td>
+                                 <td>{{ d.description }}</td>
+                                 <td>{{ d.client }}</td>
+                                 <td>{{ d.client_priority }}</td>
+                                 <td>{{ d.target_date }}</td>
+                                 <td>{{ d.product_area }}</td>
+                             </tr>
+                        {% endfor %}
+
+                    </tbody>
+
+            </table>
+
+        </div>
+     </section>
+
+{% endblock %}
